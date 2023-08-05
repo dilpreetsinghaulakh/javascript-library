@@ -91,12 +91,23 @@ const resetBooksView = () => {
 };
 
 const createBookCard = (book) => {
-  let bookInfo = document.createElement("p"); // Temporary
+  let card = document.createElement("div");
+  let bookTitle = document.createElement("p");
+  let bookAuthor = document.createElement("p");
+  let bookPages = document.createElement("p");
   let deleteBtn = document.createElement("button");
   let readStatus = document.createElement("button");
 
-  bookInfo.textContent =
-    book.title + " by " + book.author + " having " + book.pages + " pages.";
+  card.className = "card";
+
+  bookTitle.textContent = book.title;
+  bookTitle.className = "tittle";
+
+  bookAuthor.textContent = "By " + book.author;
+  bookAuthor.className = "author";
+
+  bookPages.textContent = book.pages;
+  bookPages.className = "pages";
 
   deleteBtn.classList.add("delete");
   deleteBtn.textContent = "Delete";
@@ -105,14 +116,19 @@ const createBookCard = (book) => {
   readStatus.classList.add("readStatus");
   if (book.isRead) {
     readStatus.textContent = "Read";
+    readStatus.className = "read";
   } else {
     readStatus.textContent = "Not Read";
+    readStatus.className = "not-read";
   }
-  readStatus.onclick = () => toggleRead(book.id)
+  readStatus.onclick = () => toggleRead(book.id);
 
-  booksOutput.appendChild(bookInfo);
-  booksOutput.appendChild(deleteBtn);
-  booksOutput.appendChild(readStatus);
+  card.appendChild(bookTitle);
+  card.appendChild(bookAuthor);
+  card.appendChild(bookPages);
+  card.appendChild(deleteBtn);
+  card.appendChild(readStatus);
+  booksOutput.appendChild(card);
 };
 
 const deleteBook = (uniqueId) => {

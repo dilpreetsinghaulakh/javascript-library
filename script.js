@@ -15,6 +15,14 @@ class Library {
       return book.id !== uniqueId;
     });
   }
+
+  toggleRead(uniqueId) {
+    let foundBook = this.books.find((book) => {
+      return book.id === uniqueId;
+    });
+
+    foundBook.isRead = !foundBook.isRead;
+  }
 }
 
 let library = new Library();
@@ -85,6 +93,7 @@ const resetBooksView = () => {
 const createBookCard = (book) => {
   let bookInfo = document.createElement("p"); // Temporary
   let deleteBtn = document.createElement("button");
+  let readStatus = document.createElement("button");
 
   bookInfo.textContent =
     book.title + " by " + book.author + " having " + book.pages + " pages.";
@@ -93,13 +102,26 @@ const createBookCard = (book) => {
   deleteBtn.textContent = "Delete";
   deleteBtn.onclick = () => deleteBook(book.id);
 
+  readStatus.classList.add("readStatus");
+  if (book.isRead) {
+    readStatus.textContent = "Read";
+  } else {
+    readStatus.textContent = "Not Read";
+  }
+  readStatus.onclick = () => toggleRead(book.id)
+
   booksOutput.appendChild(bookInfo);
   booksOutput.appendChild(deleteBtn);
+  booksOutput.appendChild(readStatus);
 };
 
 const deleteBook = (uniqueId) => {
   library.deleteBook(uniqueId);
-  console.log(library);
+  updateBooksView();
+};
+
+const toggleRead = (uniqueId) => {
+  library.toggleRead(uniqueId);
   updateBooksView();
 };
 

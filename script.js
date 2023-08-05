@@ -10,17 +10,20 @@ class Library {
     this.books.push(newBook);
   }
 
-  removeBook(title) {
+  deleteBook(uniqueId) {
     this.books = this.books.filter((book) => {
-      book.title !== title;
+      return book.id !== uniqueId;
     });
   }
 }
 
 let library = new Library();
 
+var bookUniqueId = 0;
+
 class Book {
-  constructor(title, author, pages, isRead) {
+  constructor(uniqueId, title, author, pages, isRead) {
+    this.id = uniqueId;
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -34,7 +37,15 @@ const createBookFromInput = () => {
   const pages = document.getElementById("pages");
   const isRead = document.getElementById("isRead");
 
-  return new Book(title.value, author.value, pages.value, isRead.checked);
+  bookUniqueId++;
+
+  return new Book(
+    bookUniqueId,
+    title.value,
+    author.value,
+    pages.value,
+    isRead.checked
+  );
 };
 
 inputBookForm.addEventListener("submit", (event) => {
@@ -42,6 +53,8 @@ inputBookForm.addEventListener("submit", (event) => {
 
   const newBook = createBookFromInput();
   library.addBook(newBook);
+
+  console.log(library);
 
   updateBooksView();
 });
@@ -57,40 +70,6 @@ inputBookForm.addEventListener("submit", (event) => {
 //    :P@@@@&Y7~~!?B@@G:     B@@@@#.
 //      ^?5G#&&@&##GJ~       G@@@@#.
 
-// const updateBooksView = () => {
-//   booksOutput.replaceChildren();
-//   if (library.length === 0) {
-//     let p = document.createElement("p");
-//     p.textContent = "Please add book(s)";
-//     booksOutput.appendChild(p);
-//   } else {
-//     for (let i = 0; i < library.length; i++) {
-//       let object = library[i];
-//       let bookTitle = object.title;
-//       let bookInfo = document.createElement("p"); // Temporary
-//       bookInfo.textContent =
-//         object.title +
-//         " by " +
-//         object.author +
-//         " having " +
-//         object.pages +
-//         " pages.";
-//       booksOutput.appendChild(bookInfo);
-
-//       let deleteBtn = document.createElement("button");
-//       deleteBtn.setAttribute("id", i);
-//       deleteBtn.classList.add("delete");
-//       deleteBtn.textContent = "Delete";
-//       booksOutput.appendChild(deleteBtn);
-
-//       deleteBtn.addEventListener("click", () => {
-//         Library.removeBook(bookTitle);
-//         printBooks();
-//       });
-//     }
-//   }
-// };
-
 const updateBooksView = () => {
   resetBooksView();
 
@@ -105,10 +84,23 @@ const resetBooksView = () => {
 
 const createBookCard = (book) => {
   let bookInfo = document.createElement("p"); // Temporary
+  let deleteBtn = document.createElement("button");
 
   bookInfo.textContent =
     book.title + " by " + book.author + " having " + book.pages + " pages.";
+
+  deleteBtn.classList.add("delete");
+  deleteBtn.textContent = "Delete";
+  deleteBtn.onclick = () => deleteBook(book.id);
+
   booksOutput.appendChild(bookInfo);
+  booksOutput.appendChild(deleteBtn);
+};
+
+const deleteBook = (uniqueId) => {
+  library.deleteBook(uniqueId);
+  console.log(library);
+  updateBooksView();
 };
 
 updateBooksView();

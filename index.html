@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div class="topbar">
+      <h1 class="name">Library of Web</h1>
+      <button id="addABook">+</button>
+    </div>
     <form id="newBookForm">
+      <button type="button" id="closeForm">✕</button>
       <label for="title">Title</label>
-      <input type="text" id="title" />
+      <input type="text" id="title" required />
       <label for="author">Author</label>
-      <input type="text" id="author" />
+      <input type="text" id="author" required />
       <label for="pages">No. of pages</label>
       <input
         type="number"
@@ -19,6 +25,7 @@
         pattern="[0-9]+"
         id="pages"
         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+        required
       />
       <label for="isRead">Have you read?</label>
       <input type="checkbox" id="isRead" />

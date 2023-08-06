@@ -62,7 +62,7 @@ inputBookForm.addEventListener("submit", (event) => {
   const newBook = createBookFromInput();
   library.addBook(newBook);
 
-  console.log(library);
+  closeForm()
 
   updateBooksView();
 });
@@ -142,3 +142,27 @@ const toggleRead = (uniqueId) => {
 };
 
 updateBooksView();
+
+const addBookBtn = document.getElementById("addABook");
+var bookFormOpen = false;
+
+addBookBtn.addEventListener("click", () => {
+  if (!bookFormOpen) {
+    inputBookForm.classList.add("open");
+  }
+  bookFormOpen = !bookFormOpen;
+});
+
+const closeFormBtn = document.getElementById("closeForm");
+
+closeFormBtn.addEventListener("click", () => {
+  closeForm();
+});
+
+const closeForm = () => {
+  if (bookFormOpen) {
+    inputBookForm.classList.remove("open");
+  }
+  inputBookForm.reset()
+  bookFormOpen = !bookFormOpen;
+};

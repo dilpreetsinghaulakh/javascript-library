@@ -13,7 +13,13 @@
       <label for="author">Author</label>
       <input type="text" id="author" />
       <label for="pages">No. of pages</label>
-      <input type="number" id="pages" />
+      <input
+        type="number"
+        inputmode="numeric"
+        pattern="[0-9]+"
+        id="pages"
+        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+      />
       <label for="isRead">Have you read?</label>
       <input type="checkbox" id="isRead" />
       <button type="submit">Add</button>

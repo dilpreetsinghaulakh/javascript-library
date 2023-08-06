@@ -1,35 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
+:root {
+  --bg-color: #f6f8fa;
+  --border-color: #d0d7de;
+  --dark-color: #1f2329;
+}
+
 body {
   font-family: "Open Sans";
   margin: 0;
-  background-color: #f6f8fa;
+  background-color: var(--bg-color);
 }
 
-.topbar{
-    display: flex;
-    justify-content: center;
-    padding-inline:1rem;
-    /* background-color: #fff; */
-    border-bottom: 1px solid #d0d7de;
+.topbar {
+  display: flex;
+  justify-content: center;
+  padding-inline: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.topbar > .content{
-    width: 100%;
-    max-width: 980px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.topbar > .content {
+  width: 100%;
+  max-width: 980px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .topbar > .content > .name {
   font-family: Cinzel;
   font-size: clamp(1.5rem, -0.875rem + 8.333vw, 2rem);
   font-weight: 300;
+  user-select: none;
 }
 
-.topbar > .content > button{
-  border: 1px solid #d0d7de;
+.topbar > .content > button {
+  border: 1px solid var(--border-color);
   color: #646d76;
   font-size: 1.125rem;
   background: none;
@@ -38,7 +46,7 @@ body {
   transition: background 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.topbar > .content > button:hover{
+.topbar > .content > button:hover {
   background-color: #00000006;
 }
 
@@ -54,9 +62,83 @@ form {
   width: clamp(240px, 50vw, 540px);
   left: 50%;
   transform: translate(-50%);
+  gap: 0.5rem;
+  margin-top: 2rem;
+  background-color: #fff;
+  padding-bottom: 1rem;
+  border-radius: 15px;
+  border: 1px var(--border-color) solid;
+  box-shadow:
+  0.9px 1.2px 2.6px rgba(0, 0, 0, 0.02),
+  2.1px 2.9px 6.3px rgba(0, 0, 0, 0.028),
+  4px 5.5px 11.9px rgba(0, 0, 0, 0.035),
+  7.1px 9.8px 21.2px rgba(0, 0, 0, 0.042),
+  13.4px 18.4px 39.7px rgba(0, 0, 0, 0.05),
+  32px 44px 95px rgba(0, 0, 0, 0.07)
+;
 }
 
-#books{
+.open > .top-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-inline: 0.75rem;
+}
+
+.open > .top-wrapper > #closeForm {
+  border: 1px solid var(--border-color);
+  color: #646d76;
+  font-size: 1.125rem;
+  background: none;
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  transition: background 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.open > .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-inline: 0.75rem;
+}
+
+.open > .inputs > input{
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+}
+
+.open > .inputs > input:focus{
+  border-color: #3f3830;
+  outline: none;
+}
+
+.open > .inputs > span{
+  display: flex;
+  gap: 1rem;
+  margin-block: 0.5rem;
+  align-items: center;
+}
+
+.open > #addBook {
+  cursor: pointer;
+  margin-inline: 1rem;
+  background-color: #6d6152;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 10px;
+  transition: background 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.open > #addBook:hover{
+  background-color: #3f3830;
+}
+
+#books {
   margin: 1rem;
   width: calc(100% - 2rem);
   max-width: 980px;

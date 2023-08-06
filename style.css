@@ -135,6 +135,10 @@ form {
   background-color: #3f3830;
 }
 
+.wrapper{
+  min-height: 70vh;
+}
+
 #books {
   margin: 1rem;
   width: calc(100% - 2rem);
@@ -175,4 +179,55 @@ form {
 
 #books > .card > .pages::after {
   content: " pages";
+}
+
+#books > .card > button{
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+#books > .card > .read{
+  background-color: #FFB84C;
+  color: #000;
+}
+
+#books > .card > .not-read{
+  background-color: #FC2947;
+  color: #fff;
+}
+
+#books > .card > .delete{
+  cursor: pointer;
+  background: none;
+  justify-self: center;
+  margin-inline: auto;
+  padding: 0;
+  padding-inline: 0.25rem;
+  transition: scale cubic-bezier(0.175, 0.885, 0.32, 1.275) 250ms;
+}
+
+#books > .card > .delete:hover{
+  scale: 1.1;
+}
+
+button{
+  outline: none;
+}
+
+footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* position: absolute; */
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid var(--border-color);
+}
+
+footer > a{
+  text-decoration: none;
+  color: #000;
 }

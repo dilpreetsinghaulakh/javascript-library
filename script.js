@@ -110,7 +110,10 @@ const createBookCard = (book) => {
   bookPages.className = "pages";
 
   deleteBtn.classList.add("delete");
-  deleteBtn.textContent = "Delete";
+  // deleteBtn.textContent = "Delete";
+  const trashSvg = document.createElement("img");
+  trashSvg.src = "trash.svg"
+  deleteBtn.appendChild(trashSvg)
   deleteBtn.onclick = () => deleteBook(book.id);
 
   readStatus.classList.add("readStatus");

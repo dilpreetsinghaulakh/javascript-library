@@ -101,7 +101,7 @@ const createBookCard = (book) => {
   card.className = "card";
 
   bookTitle.textContent = book.title;
-  bookTitle.className = "tittle";
+  bookTitle.className = "title";
 
   bookAuthor.textContent = "By " + book.author;
   bookAuthor.className = "author";
@@ -126,8 +126,8 @@ const createBookCard = (book) => {
   card.appendChild(bookTitle);
   card.appendChild(bookAuthor);
   card.appendChild(bookPages);
-  card.appendChild(deleteBtn);
   card.appendChild(readStatus);
+  card.appendChild(deleteBtn);
   booksOutput.appendChild(card);
 };
 

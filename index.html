@@ -9,8 +9,10 @@
   </head>
   <body>
     <div class="topbar">
-      <h1 class="name">Library of Web</h1>
-      <button id="addABook">+</button>
+      <div class="content">
+        <h1 class="name">Library of Web</h1>
+        <button id="addABook">＋</button>
+      </div>
     </div>
     <form id="newBookForm">
       <button type="button" id="closeForm">✕</button>
@@ -27,8 +29,10 @@
         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
         required
       />
-      <label for="isRead">Have you read?</label>
-      <input type="checkbox" id="isRead" />
+      <span>
+        <label for="isRead">Have you read?</label>
+        <input type="checkbox" id="isRead" />
+      </span>
       <button type="submit">Add</button>
     </form>
     <div id="books"></div>

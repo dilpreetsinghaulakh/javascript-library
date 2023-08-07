@@ -62,7 +62,7 @@ inputBookForm.addEventListener("submit", (event) => {
   const newBook = createBookFromInput();
   library.addBook(newBook);
 
-  closeForm()
+  closeForm();
 
   updateBooksView();
 });
@@ -80,9 +80,15 @@ inputBookForm.addEventListener("submit", (event) => {
 
 const updateBooksView = () => {
   resetBooksView();
-
-  for (let book of library.books) {
-    createBookCard(book);
+  if (library.books.length > 0) {
+    for (let book of library.books) {
+      createBookCard(book);
+    }
+  } else {
+    let noBookP = document.createElement("p");
+    noBookP.classList.add("no-book");
+    noBookP.textContent = "Add first book by clicking on top-right '+' button";
+    booksOutput.appendChild(noBookP);
   }
 };
 
@@ -112,8 +118,8 @@ const createBookCard = (book) => {
   deleteBtn.classList.add("delete");
   // deleteBtn.textContent = "Delete";
   const trashSvg = document.createElement("img");
-  trashSvg.src = "trash.svg"
-  deleteBtn.appendChild(trashSvg)
+  trashSvg.src = "trash.svg";
+  deleteBtn.appendChild(trashSvg);
   deleteBtn.onclick = () => deleteBook(book.id);
 
   readStatus.classList.add("readStatus");
@@ -147,7 +153,7 @@ const toggleRead = (uniqueId) => {
 updateBooksView();
 
 const addBookBtn = document.getElementById("addABook");
-const formContainer = document.getElementById("form-container")
+const formContainer = document.getElementById("form-container");
 var bookFormOpen = false;
 
 addBookBtn.addEventListener("click", () => {
@@ -167,6 +173,6 @@ const closeForm = () => {
   if (bookFormOpen) {
     formContainer.classList.remove("open");
   }
-  inputBookForm.reset()
+  inputBookForm.reset();
   bookFormOpen = !bookFormOpen;
 };

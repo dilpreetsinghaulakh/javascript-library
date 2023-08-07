@@ -50,20 +50,35 @@ body {
   background-color: #00000006;
 }
 
-form {
-  display: none;
+#form-container {
+  /* display: none;
+  display: block !important; */
+  scale: 0;
+  height: 100vh;
+  width: 100vw;
+  /* background-color: #00000020; */
+  backdrop-filter: blur(15px) opacity(0.9);
+  -webkit-backdrop-filter: blur(15px) opacity(0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: ease-in-out 250ms;
 }
 
 .open {
+  scale: 1 !important;
+}
+
+#form-container > form {
   display: block;
   position: absolute;
   display: flex;
   flex-direction: column;
   width: clamp(240px, 50vw, 540px);
+  top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   gap: 0.5rem;
-  margin-top: 2rem;
   background-color: #fff;
   padding-bottom: 1rem;
   border-radius: 15px;
@@ -73,9 +88,10 @@ form {
     4px 5.5px 11.9px rgba(0, 0, 0, 0.035),
     7.1px 9.8px 21.2px rgba(0, 0, 0, 0.042),
     13.4px 18.4px 39.7px rgba(0, 0, 0, 0.05), 32px 44px 95px rgba(0, 0, 0, 0.07);
+  animation: fadeIn 500ms;
 }
 
-.open > .top-wrapper {
+#form-container > form > .top-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -83,7 +99,7 @@ form {
   padding-inline: 0.75rem;
 }
 
-.open > .top-wrapper > #closeForm {
+.open > form > .top-wrapper > #closeForm {
   border: 1px solid var(--border-color);
   color: #646d76;
   font-size: 1.125rem;
@@ -93,33 +109,33 @@ form {
   transition: background 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.open > .inputs {
+.open > form > .inputs {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin-inline: 0.75rem;
 }
 
-.open > .inputs > input {
+#form-container > form > .inputs > input {
   font-size: 1rem;
   border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 0.5rem 1rem;
 }
 
-.open > .inputs > input:focus {
+#form-container > form > .inputs > input:focus {
   border-color: #3f3830;
   outline: none;
 }
 
-.open > .inputs > span {
+#form-container > form > .inputs > span {
   display: flex;
   gap: 1rem;
   margin-block: 0.5rem;
   align-items: center;
 }
 
-.open > #addBook {
+#form-container > form > #addBook {
   cursor: pointer;
   margin-inline: 1rem;
   background-color: #6d6152;
@@ -131,11 +147,11 @@ form {
   transition: background 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.open > #addBook:hover {
+#form-container > form > #addBook:hover {
   background-color: #3f3830;
 }
 
-.wrapper{
+.wrapper {
   min-height: 70vh;
 }
 
@@ -147,6 +163,10 @@ form {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
+}
+
+#books > .card:last-child {
+  animation: fadeIn 500ms;
 }
 
 #books > .card {
@@ -181,25 +201,24 @@ form {
   content: " pages";
 }
 
-#books > .card > button{
+#books > .card > button {
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 10px;
   font-size: 0.9rem;
   font-weight: 600;
 }
-#books > .card > .read{
-  background-color: #FFB84C;
+#books > .card > .read {
+  background-color: #ffb84c;
   color: #000;
 }
 
-#books > .card > .not-read{
-  background-color: #FC2947;
+#books > .card > .not-read {
+  background-color: #fc2947;
   color: #fff;
 }
 
-#books > .card > .delete{
-  cursor: pointer;
+#books > .card > .delete {
   background: none;
   justify-self: center;
   margin-inline: auto;
@@ -208,15 +227,16 @@ form {
   transition: scale cubic-bezier(0.175, 0.885, 0.32, 1.275) 250ms;
 }
 
-#books > .card > .delete:hover{
+#books > .card > .delete:hover {
   scale: 1.1;
 }
 
-button{
+button {
   outline: none;
+  cursor: pointer;
 }
 
-footer{
+footer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -227,7 +247,22 @@ footer{
   border-top: 1px solid var(--border-color);
 }
 
-footer > a{
+footer > a {
   text-decoration: none;
   color: #000;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #form-container > form {
+    width: calc(100% - 2rem);
+  }
 }

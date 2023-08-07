@@ -147,11 +147,12 @@ const toggleRead = (uniqueId) => {
 updateBooksView();
 
 const addBookBtn = document.getElementById("addABook");
+const formContainer = document.getElementById("form-container")
 var bookFormOpen = false;
 
 addBookBtn.addEventListener("click", () => {
   if (!bookFormOpen) {
-    inputBookForm.classList.add("open");
+    formContainer.classList.add("open");
   }
   bookFormOpen = !bookFormOpen;
 });
@@ -164,7 +165,7 @@ closeFormBtn.addEventListener("click", () => {
 
 const closeForm = () => {
   if (bookFormOpen) {
-    inputBookForm.classList.remove("open");
+    formContainer.classList.remove("open");
   }
   inputBookForm.reset()
   bookFormOpen = !bookFormOpen;

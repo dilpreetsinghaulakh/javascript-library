@@ -14,30 +14,32 @@
         <button id="addABook">＋</button>
       </div>
     </div>
-    <form id="newBookForm">
-      <div class="top-wrapper">
-        <h3>Add a Book</h3>
-        <button type="button" id="closeForm">✕</button>
-      </div>
-      <div class="inputs">
-        <input type="text" id="title" placeholder="Title" required />
-        <input type="text" id="author" placeholder="Author" required />
-        <input
-          type="number"
-          inputmode="numeric"
-          pattern="[0-9]+"
-          id="pages"
-          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-          placeholder="No. of Pages"
-          required
-        />
-        <span>
-          <label for="isRead">Have you read?</label>
-          <input type="checkbox" id="isRead" />
-        </span>
-      </div>
-      <button id="addBook" type="submit">Add Book</button>
-    </form>
+    <div id="form-container">
+      <form id="newBookForm">
+        <div class="top-wrapper">
+          <h3>Add a Book</h3>
+          <button type="button" id="closeForm">✕</button>
+        </div>
+        <div class="inputs">
+          <input type="text" id="title" placeholder="Title" required />
+          <input type="text" id="author" placeholder="Author" required />
+          <input
+            type="number"
+            inputmode="numeric"
+            pattern="[0-9]+"
+            id="pages"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+            placeholder="No. of Pages"
+            required
+          />
+          <span>
+            <label for="isRead">Have you read?</label>
+            <input type="checkbox" id="isRead" />
+          </span>
+        </div>
+        <button id="addBook" type="submit">Add Book</button>
+      </form>
+    </div>
     <div class="wrapper">
       <div id="books"></div>
     </div>
